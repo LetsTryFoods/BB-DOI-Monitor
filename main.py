@@ -32,8 +32,8 @@ INVENTORY_CITY_MAPPING = {
 # ===============================
 @st.cache_data
 def preprocess_data(uploaded_file):
-    sales_df = pd.read_excel(uploaded_file, sheet_name="Sales")
-    inventory_df = pd.read_excel(uploaded_file, sheet_name="Inventory")
+    pd.read_excel(uploaded_file, sheet_name="Sales", engine="openpyxl")
+    pd.read_excel(uploaded_file, sheet_name="Inventory", engine="openpyxl")
 
     # ---- Sales preprocessing ----
     sales_df["source_city_name"] = sales_df["source_city_name"].replace(SALES_CITY_MAPPING)
@@ -282,3 +282,4 @@ else:
         use_container_width=True,
         hide_index=True
     )
+
