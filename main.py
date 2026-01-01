@@ -8,23 +8,93 @@ st.set_page_config(page_title="DOI Monitor", layout="wide")
 # CITY MAPPINGS
 # ===============================
 SALES_CITY_MAPPING = {
+    "Agra": "Agra",
     "Ahmedabad Rural": "Ahmedabad-Gandhinagar",
     "Ahmedabad-Gandhinagar": "Ahmedabad-Gandhinagar",
+    "Allahabad": "Allahabad",
+    "Bangalore": "Bangalore",
     "Bangalore Rural": "Bangalore",
+    "Bhopal": "Bhopal",
+    "Bhubaneshwar-Cuttack": "Bhubaneshwar-Cuttack",
+    "Bhubaneswar Rural": "Bhubaneshwar-Cuttack",
+    "Chandigarh Tricity": "Chandigarh Tricity",
+    "Chennai": "Chennai",
+    "Chennai Rural": "Chennai",
+    "Coimbatore": "Coimbatore",
+    "DehraDun": "DehraDun",
     "Gurgaon": "Delhi",
     "Gurugram Rural": "Delhi",
+    "Guwahati": "Guwahati",
+    "Hyderabad": "Hyderabad",
     "Hyderabad Rural": "Hyderabad",
+    "Indore": "Indore",
+    "Kochi": "Kochi",
     "Kochi Rural": "Kochi",
+    "Kolkata": "Kolkata",
     "Kolkata Rural": "Kolkata",
+    "Kozhikode": "Kozhikode",
     "Lucknow Rural": "Lucknow-Kanpur",
+    "Lucknow-Kanpur": "Lucknow-Kanpur",
+    "Mangaluru": "Mangaluru",
+    "Mumbai": "Mumbai",
     "Mumbai Rural": "Mumbai",
-    "Pune Rural": "Pune",
+    "Mysore": "Mysore",
+    "Nagpur": "Nagpur",
+    "Nashik": "Nashik",
+    "Noida": "Noida",
+    "Noida Rural": "Noida",
+    "Patna": "Patna",
     "Patna Rural": "Patna",
+    "Pune": "Pune",
+    "Pune Rural": "Pune",
+    "Raipur": "Raipur",
+    "Ranchi": "Ranchi",
+    "Ranchi Rural": "Ranchi",
+    "Surat": "Surat",
+    "Thiruvananthapuram": "Thiruvananthapuram",
+    "Vadodara": "Vadodara",
+    "Vijayawada-Guntur": "Vijayawada-Guntur",
+    "Visakhapatnam": "Visakhapatnam",
     "Vizag Rural": "Visakhapatnam"
 }
 
 INVENTORY_CITY_MAPPING = {
-    "Gurgaon": "Delhi"
+    "Agra": "Agra",
+    "Ahmedabad-Gandhinagar": "Ahmedabad-Gandhinagar",
+    "Allahabad": "Allahabad",
+    "Bangalore": "Bangalore",
+    "Bhopal": "Bhopal",
+    "Bhubaneshwar-Cuttack": "Bhubaneshwar-Cuttack",
+    "Chandigarh Tricity": "Chandigarh Tricity",
+    "Chennai": "Chennai",
+    "Coimbatore": "Coimbatore",
+    "DehraDun": "DehraDun",
+    "Delhi": "Delhi",
+    "Gurgaon": "Delhi",
+    "Guwahati": "Guwahati",
+    "Gwalior": "Gwalior",
+    "Hyderabad": "Hyderabad",
+    "Indore": "Indore",
+    "Kochi": "Kochi",
+    "Kolkata": "Kolkata",
+    "Kozhikode": "Kozhikode",
+    "Lucknow-Kanpur": "Lucknow-Kanpur",
+    "Ludhiana": "Ludhiana",
+    "Mangaluru": "Mangaluru",
+    "Mumbai": "Mumbai",
+    "Mysore": "Mysore",
+    "Nagpur": "Nagpur",
+    "Nashik": "Nashik",
+    "Noida": "Noida",
+    "Patna": "Patna",
+    "Pune": "Pune",
+    "Raipur": "Raipur",
+    "Ranchi": "Ranchi",
+    "Surat": "Surat",
+    "Thiruvananthapuram": "Thiruvananthapuram",
+    "Vadodara": "Vadodara",
+    "Vijayawada-Guntur": "Vijayawada-Guntur",
+    "Visakhapatnam": "Visakhapatnam"
 }
 
 # ===============================
@@ -32,8 +102,8 @@ INVENTORY_CITY_MAPPING = {
 # ===============================
 @st.cache_data
 def preprocess_data(uploaded_file):
-    pd.read_excel(uploaded_file, sheet_name="Sales", engine="openpyxl")
-    pd.read_excel(uploaded_file, sheet_name="Inventory", engine="openpyxl")
+    sales_df = pd.read_excel(uploaded_file, sheet_name="Sales", engine="openpyxl")
+    inventory_df = pd.read_excel(uploaded_file, sheet_name="Inventory", engine="openpyxl")
 
     # ---- Sales preprocessing ----
     sales_df["source_city_name"] = sales_df["source_city_name"].replace(SALES_CITY_MAPPING)
@@ -282,4 +352,5 @@ else:
         use_container_width=True,
         hide_index=True
     )
+
 
